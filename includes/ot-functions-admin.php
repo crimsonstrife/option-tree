@@ -5057,10 +5057,10 @@ if ( ! function_exists( 'ot_decode' ) ) {
 		preg_match( '/a:\d+:{.*?}/', $decoded, $array_matches, PREG_OFFSET_CAPTURE, 0 );
 
 		// Search for an object.
-		preg_match( '/O:\+?\d+:"[a-z0-9_]+":\+?\d+:|C:\+?\d+:"[a-z0-9_]+":\+?\d+:/i', $decoded, $obj_matches, PREG_OFFSET_CAPTURE, 0 );
+		preg_match( '/O:\d+:"[a-z0-9_]+":\d+:{.*?}/i', $decoded, $obj_matches, PREG_OFFSET_CAPTURE, 0 );
 
 		// Prevent object injection or non arrays.
-		if ( $obj_matches || ! $array_matches ) {
+		if ( ! $obj_matches || ! $array_matches ) {
 			return $fallback;
 		}
 
